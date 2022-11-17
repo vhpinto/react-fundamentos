@@ -18,6 +18,10 @@ function App() {
             author="Vítor Hugo" 
             content="Mocked text" 
           />
+          <Post 
+            author="Vítor Hugo" 
+            content="Mocked text" 
+          />
         </main>
       </div>
     </div>
