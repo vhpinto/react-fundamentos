@@ -119,3 +119,7 @@ Style every post that has a post before it
 .commentForm button[type=submit]:hover {
     background: var(--green-300);
 }
+
+.commentList {
+    margin-top: 2rem;
+}
