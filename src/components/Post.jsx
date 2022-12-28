@@ -22,6 +22,10 @@ export function Post({author, publishedAt, content}) {
         addSuffix: true,
     });
 
+    function setCommentValidation() {
+        event.target.setCustomValidity('Comentário está em branco!');
+    }
+
     function handleAddNewComment() {
         event.preventDefault();
 
@@ -30,6 +34,8 @@ export function Post({author, publishedAt, content}) {
     };
     
     function handleCommentTextAreaTextChange() {
+        event.target.setCustomValidity('');
+
         setCommentTextAreaValue(event.target.value);
     }
 
@@ -40,6 +46,8 @@ export function Post({author, publishedAt, content}) {
 
         setComments(commentsWithoutDeletedOne);
     }
+
+    const isCommentTextAreaValueEmpty = commentTextAreaValue.length === 0;
 
     return (
         <article className={styles.post}>
@@ -79,10 +87,18 @@ export function Post({author, publishedAt, content}) {
                     placeholder='Deixe um comentário'
                     value={commentTextAreaValue}
                     onChange={handleCommentTextAreaTextChange}
+
+                    onInvalid={setCommentValidation}
+                    required
                 />
 
                 <footer>
-                    <button type='submit'>Publicar</button>
+                    <button 
+                        type='submit'
+                        disabled={isCommentTextAreaValueEmpty}
+                    >
+                        Publicar
+                    </button>
                 </footer>
 
             </form>
