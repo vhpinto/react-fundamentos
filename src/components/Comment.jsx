@@ -1,10 +1,19 @@
 import styles from './Comment.module.css';
-import { Trash, ThumbsUp } from 'phosphor-react';
+import { Trash, HandsClapping } from 'phosphor-react';
 import { Avatar } from './Avatar';
+import { useState } from 'react';
 
 export function Comment({ content, onDeleteComment }) {
+    const [ claps, setClaps ] = useState(0);
+
     function handleDeleteComment() {
         onDeleteComment(content);
+    }
+
+    function handleClapsCount() {
+        setClaps((prev)=> {
+            return prev + 1;
+        });
     }
 
     return(
@@ -26,10 +35,12 @@ export function Comment({ content, onDeleteComment }) {
                     <p>{content}</p>
                 </div>
                 <footer>
-                    <button title='Dar like no comentário'>
-                        <ThumbsUp size={24}/>
+                    <button 
+                        onClick={handleClapsCount}
+                        title='Aplaudir comentário'>
+                        <HandsClapping size={24} />
                         Aplaudir
-                        <span>20</span>
+                        <span>{claps}</span>
                     </button>
                 </footer>
             </div>
